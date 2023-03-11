@@ -55,6 +55,7 @@ namespace Platformer.Mechanics
                         {
                             token.gameObject.SetActive(false);
                             tokens[i] = null;
+                            GameObject.Find("Canvas").GetComponent<ScoreContoroller>().Addscore();
                         }
                         else
                         {
@@ -65,6 +66,8 @@ namespace Platformer.Mechanics
                 //calculate the time of the next frame.
                 nextFrameTime += 1f / frameRate;
             }
+
+
         }
 
     }

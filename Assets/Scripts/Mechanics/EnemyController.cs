@@ -34,12 +34,15 @@ namespace Platformer.Mechanics
         void OnCollisionEnter2D(Collision2D collision)
         {
             var player = collision.gameObject.GetComponent<PlayerController>();
-            if (player != null)
+            if(player != null)
             {
                 var ev = Schedule<PlayerEnemyCollision>();
                 ev.player = player;
                 ev.enemy = this;
             }
+
+            
+
         }
 
         void Update()
@@ -48,8 +51,17 @@ namespace Platformer.Mechanics
             {
                 if (mover == null) mover = path.CreateMover(control.maxSpeed * 0.5f);
                 control.move.x = Mathf.Clamp(mover.Position.x - transform.position.x, -1, 1);
+                
             }
+            
         }
+
+        public void OnDead()
+        {
+            GameObject.Find("Canvas").GetComponent<ScoreContoroller>().Addscore();
+        }
+
+        
 
     }
 }

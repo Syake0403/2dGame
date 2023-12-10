@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - TutorialRequirement
+  - Victory
+  - Item
+  - SpeedUPalpha
   layers:
   - Default
   - TransparentFX

@@ -72,9 +72,40 @@ namespace Platformer.Mechanics
             base.Update();
         }
 
+        void backjump()
+        {
+            maxSpeed -= 7;
+        }
+
+        void backspeed()
+        {
+            jumpTakeOffSpeed -= 7;
+        }
+
+        void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.gameObject.CompareTag("Item"))
+            {
+                // 強化処理
+                maxSpeed += 7;
+
+                // アイテムを消す
+                Destroy(other.gameObject);
+
+                Invoke("backjump", 10.0f);
+            }
+            if (other.gameObject.CompareTag("SpeedUPalpha"))
+            {
+                jumpTakeOffSpeed += 7;
+
+                Destroy(other.gameObject);
+
+                Invoke("backspeed",10.0f);
+            }
+        }
         void UpdateJumpState()
         {
-            jump = false;
+            jump = false;     //ここを変更//
             switch (jumpState)
             {
                 case JumpState.PrepareToJump:
